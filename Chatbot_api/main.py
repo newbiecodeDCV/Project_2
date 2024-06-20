@@ -1,5 +1,5 @@
 from Prompt import prompt
-from langchain_openai import  ChatOpenAI
+from langchain_cohere import ChatCohere
 from load_dotenv import load_dotenv
 from Rag import retriever
 from langchain_core.runnables import RunnablePassthrough
@@ -7,7 +7,7 @@ from Prompt import prompt
 from langchain_core.output_parsers import StrOutputParser
 load_dotenv()
 
-model = ChatOpenAI(model="gpt-3.5-turbo-0125")
+model = ChatCohere(model="command-r")
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
 chain = (
@@ -17,11 +17,5 @@ chain = (
     | StrOutputParser()
 )
 
-x = chain.invoke('Bạn có biết gì về du lịch ở Đà Nẵng không')
-
-
-
-
-
-
+x = chain.invoke("Cho tôi thông tin về thành phố Đà Nẵng?")
 print(x)
