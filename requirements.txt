@@ -6,4 +6,4 @@ langchain_openai
 load_dotenv
 pydantic
 uvicorn
-
+langchain_cohere
